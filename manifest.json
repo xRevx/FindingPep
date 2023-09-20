@@ -1,0 +1,20 @@
+{
+    "manifest_version": 3,
+    "name": "Copy History",
+    "description": "saves the last 20 things you have copied or highlited",
+    "version": "1.0",
+    "action": {
+        "default_popup": "popup/popup.html"
+    },
+    "icons": {
+        "48": "images/clipboard48.png"
+    },
+    "background":{
+        "service_worker": "background.js",
+        "type": "module"
+    },
+    "permissions":[
+        "storage"
+    ]
+
+}
