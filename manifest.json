@@ -7,7 +7,7 @@
         "default_popup": "popup/popup.html"
     },
     "icons": {
-        "48": "images/clipboard48.png"
+        "48": "image/clipboard48.png"
     },
     "background":{
         "service_worker": "background.js",
