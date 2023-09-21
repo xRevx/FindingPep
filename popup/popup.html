@@ -21,14 +21,14 @@
     </div>
     <div class="container m-3">
         <div class="field">
-            <label for="phone">Enter your phone number:</label>
-            <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
+            <label class="phone">Enter your phone number:</label>
+            <input type="tel" id="phoneID" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
         </div>
 
         <div class="field">
             <label class="label">Time In Day</label>
             <div class="control">
-                <input type="time" class="input">
+                <input type="time" class="input" id="time of day">
             </div>
         </div>
         <div class="field">
@@ -36,14 +36,17 @@
             <input type="checkbox" id="repeat" value="On repeat">
         </div>
         
-        <div class="container m-3">
-            <button class="button is-success">Save & Start</button>
+        <div class="container">
+            <button class="button is-success is-fullwidth" style="margin-bottom: 3px;" id="startButton">Save & Start</button>
         </div>
         
-        <div class="container m-3">
-            <button class="button is-danger">Stop</button>
+        <div class="container">
+            <button class="button is-danger is-fullwidth" id="stopButton">Stop</button>
         </div>
 
     </div>
 </body>
+
+<script src="popup.js"></script>
+
 </html>
