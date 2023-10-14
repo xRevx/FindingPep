@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Copy History",
-    "description": "saves the last 20 things you have copied or highlited",
+    "description": "",
     "version": "1.0",
     "action": {
         "default_popup": "popup/popup.html"
@@ -15,7 +15,8 @@
     },
     "permissions":[
         "storage",
-        "tabs"
+        "tabs",
+        "tabGroups"
     ]
 
     

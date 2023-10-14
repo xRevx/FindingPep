@@ -37,20 +37,33 @@ function send_handle(prefs){
     // normalizedNumber = '+' + normalizedNumber;
     console.log("normalized",normalizedNumber)
     console.log("message",prefs.Message)
-    openTabGroup(prefs.FullName, normalizedNumber)
+    openTabGroup(prefs.FullName, normalizedNumber,prefs)
    // win.focus();
 }
 function openTabGroup(fullname, normalizedNumber, prefs) {
     const urls = [
-        `https://www.facebook.com/search/top?q=${fullname}`,
-        `https://www.instagram.com/${fullname}/`,
-        `https://www.tiktok.com/search?q=${fullname}`,
-        `https://twitter.com/search?q=${fullname}&src=typed_query&f=top`,
-        `https://wa.me/${normalizedNumber}`
+        [`https://www.facebook.com/search/top?q=${fullname}`,prefs.FaceCB],
+        [`https://www.instagram.com/explore/tags/${fullname}/`, prefs.InsCB],
+        [`https://www.tiktok.com/search?q=${fullname}`, prefs.TikCB],
+        [`https://twitter.com/search?q=${fullname}&src=typed_query&f=top`, prefs.TwittCB],
+        [`https://www.google.com/search?q=${fullname}`, prefs.GooCB],
+        [`https://wa.me/${normalizedNumber}`, prefs.WhatsCB]
     ];
     
 
-    for (const url of urls) {
-        chrome.tabs.create({ url: url});
+    const urlsToOpen = urls
+        .filter(([url, isChecked]) => isChecked)
+        .map(([url]) => url);
+
+    if (urlsToOpen.length > 0) {
+        const windowOptions = {
+            url: urlsToOpen,
+            focused: true // Set to false if you don't want the window to be focused
+        };
+
+        chrome.windows.create(windowOptions, (window) => {
+            console.log("Window created with tabs:", window.tabs);
+        });
     }
+
 }

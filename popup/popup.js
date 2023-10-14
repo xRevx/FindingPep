@@ -10,12 +10,12 @@ const facebookCheckBox = document.getElementById("facebook")
 const instagramCheckBox = document.getElementById("instagram")
 const tiktokCheckBox = document.getElementById("tiktok")
 const twitterCheckBox = document.getElementById("twitter")
+const googleCheckBox = document.getElementById("google")
 const whatsappCheckBox = document.getElementById("whatsapp")
 
 startButton.onclick = () => {
     phoneval = phoneNumberElement.value;
 
-    if(validatePhoneNumber(phoneval)){
         const prefs = {
             phoneNumber: phoneval,
             FullName: FullNameElement.value,
@@ -23,36 +23,25 @@ startButton.onclick = () => {
             InsCB: instagramCheckBox.checked,
             TikCB: tiktokCheckBox.checked,
             TwittCB: twitterCheckBox.checked,
+            GooCB: googleCheckBox.checked,
             WhatsCB: whatsappCheckBox.checked,
         }
         chrome.runtime.sendMessage({event: 'onStart', prefs})
-    }
 }
 
-chrome.storage.local.get(["phoneNumber", "FullName", "FaceCB", "InsCB", "TikCB", "TwittCB", "WhatsCB"], (result) =>{
-    const { phoneNumber, FullName, FaceCB, InsCB, TikCB, TwittCB, WhatsCB} = result; 
+chrome.storage.local.get(["phoneNumber", "FullName", "FaceCB", "InsCB", "TikCB", "TwittCB", "GooCB", "WhatsCB"], (result) =>{
+    const { phoneNumber, FullName, FaceCB, InsCB, TikCB, TwittCB, GooCB, WhatsCB} = result; 
     if(phoneNumber){
         phoneNumberElement.value = phoneNumber
     }
 
-    if (FullName){
-        FullNameElement.value = FullName
-    }
-    if (FaceCB) {
-        facebookCheckBox.value = FaceCB
-    }
-    if (InsCB) {
-        instagramCheckBox.value = InsCB
-    }
-    if (TikCB) {
-        tiktokCheckBox.value = TikCB
-    }
-    if (TwittCB) {
-        twitterCheckBox.value = TwittCB
-    }
-    if (WhatsCB) {
-        whatsappCheckBox.value = WhatsCB
-    }
+    FullNameElement.value = FullName
+    facebookCheckBox.checked = FaceCB
+    instagramCheckBox.checked = InsCB
+    tiktokCheckBox.checked = TikCB
+    twitterCheckBox.checked = TwittCB
+    googleCheckBox.checked = GooCB
+    whatsappCheckBox.checked = WhatsCB
 })
 
 
