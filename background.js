@@ -43,7 +43,7 @@ function send_handle(prefs){
 function openTabGroup(fullname, normalizedNumber, prefs) {
     const urls = [
         [`https://www.facebook.com/search/top?q=${fullname}`,prefs.FaceCB],
-        [`https://www.instagram.com/explore/tags/${fullname}/`, prefs.InsCB],
+        [`https://imgsed.com/search/?q=${fullname}`, prefs.InsCB],
         [`https://www.tiktok.com/search?q=${fullname}`, prefs.TikCB],
         [`https://twitter.com/search?q=${fullname}&src=typed_query&f=top`, prefs.TwittCB],
         [`https://www.google.com/search?q=${fullname}`, prefs.GooCB],
