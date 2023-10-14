@@ -3,53 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Whatsapp Delay Message</title>
+    <title>all 4 socials</title>
     <link rel="stylesheet" href="bulma.min.css"/>
 
 </head>
 <body>
     <div class="container m-3">
-        <h1 class="title">Whatsapp Delay Message</h1>
+        <h1 class="title">Open all 4 socials</h1>
 
         <div class="field">
             <label class="label">Status</label>
-            <span class="tag is-danger"> Stopped</span>
             <span class="tag is-success"> Sent</span>
             <span class="tag is-warning"> Waiting</span>
-
         </div>
     </div>
-    <div class="container m-3">
+    <div class="container m-2">
         <div class="field">
-            <label class="phone">Enter your phone number:</label>
-            <input type="tel" id="phoneID" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="+972 512345678">
+            <label class="label">Full name</label>
+            <div class="control">
+                <input type="text" class="input" id="Full name">
+            </div>
         </div>
+        <div class="field">
+            <div class="social">
+                <img src="../image/facebook_icon.png" alt="Facebook" style="width: 20px; height: 20px;">
+                <label for="facebook">Facebook</label>
+                <input type="checkbox" id="facebook" value="facebook">
 
-        <div class="field">
-            <label class="label">Time In Day</label>
-            <div class="control">
-                <input type="time" class="input" id="time of day">
+            </div>
+            <div class="social">
+                <img src="../image/instagram_icon.png" alt="Instagram" style="width: 20px; height: 20px;">
+                <label for="instagram">Instagram</label>
+                <input type="checkbox" id="instagram" value="instagram">
+
+            </div>
+            <div class="social">
+                <img src="../image/TikTok_icon.png" alt="TikTok" style="width: 20px; height: 20px;">
+                <label for="tiktok">TikTok</label>
+                <input type="checkbox" id="tiktok" value="tiktok">
+
+            </div>
+            <div class="social">
+                <img src="../image/twitter_icon.png" alt="Twitter" style="width: 20px; height: 20px;">
+                <label for="twitter">Twitter</label>
+                <input type="checkbox" id="twitter" value="twitter">
+            </div>
+            
+            <br>
+            <div class="field">
+                <label class="phone">Enter phone number:</label>
+                <input type="tel" id="phoneID" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="+972 512345678">
+            </div>
+            <div class="social">
+                <img src="../image/whatsapp_icon.png" alt="Whatsapp" style="width: 20px; height: 20px;">
+                <label for="whatsapp">Whatsapp</label>
+                <input type="checkbox" id="whatsapp" value="whatsapp">
             </div>
         </div>
-        <div class="field">
-            <label class="label">Message</label>
-            <div class="control">
-                <input type="text" class="input" id="Message">
-            </div>
-        </div>
-        <div class="field">
-            <label for="repeat">Does repeat</label><br>
-            <input type="checkbox" id="repeat" value="On repeat">
-        </div>
-        
         <div class="container">
             <button class="button is-success is-fullwidth" style="margin-bottom: 3px;" id="startButton">Save & Start</button>
         </div>
-        
-        <div class="container">
-            <button class="button is-danger is-fullwidth" id="stopButton">Stop</button>
-        </div>
-
     </div>
 </body>
 

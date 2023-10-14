@@ -26,11 +26,6 @@ startButton.onclick = () => {
         }
     }  
 }
-stopButton.onclick = () => {
-    chrome.runtime.sendMessage({event: 'onStop'})
-
-    console.log("you clicked stop")
-}
 
 chrome.storage.local.get(["phoneNumber","timeOfDay", "Message", "DoesRepeat"], (result) =>{
     const { phoneNumber, timeOfDay, Message , DoesRepeat} = result; 
