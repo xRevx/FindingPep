@@ -1,46 +1,58 @@
 // ELEMENTS
 const phoneNumberElement = document.getElementById("phoneID")
-const TimeOfDayElement = document.getElementById("time of day")
-const Messagelement = document.getElementById("Message")
+const FullNameElement = document.getElementById("Full name")
 
 //Buttons elements
 const startButton = document.getElementById("startButton")
-const stopButton = document.getElementById("stopButton")
 
 //CheckBoxs element
-const repeatCheckBox = document.getElementById("repeat")
+const facebookCheckBox = document.getElementById("facebook")
+const instagramCheckBox = document.getElementById("instagram")
+const tiktokCheckBox = document.getElementById("tiktok")
+const twitterCheckBox = document.getElementById("twitter")
+const whatsappCheckBox = document.getElementById("whatsapp")
 
 startButton.onclick = () => {
     phoneval = phoneNumberElement.value;
-    timeval = TimeOfDayElement.value;
 
-    if(timeval){
-        if(validatePhoneNumber(phoneval)){
-            const prefs = {
-                phoneNumber: phoneval,
-                timeOfDay: timeval,
-                Message: Messagelement.value,
-                DoesRepeat: repeatCheckBox.checked
-            }
-            chrome.runtime.sendMessage({event: 'onStart', prefs})
+    if(validatePhoneNumber(phoneval)){
+        const prefs = {
+            phoneNumber: phoneval,
+            FullName: FullNameElement.value,
+            FaceCB: facebookCheckBox.checked,
+            InsCB: instagramCheckBox.checked,
+            TikCB: tiktokCheckBox.checked,
+            TwittCB: twitterCheckBox.checked,
+            WhatsCB: whatsappCheckBox.checked,
         }
-    }  
+        chrome.runtime.sendMessage({event: 'onStart', prefs})
+    }
 }
 
-chrome.storage.local.get(["phoneNumber","timeOfDay", "Message", "DoesRepeat"], (result) =>{
-    const { phoneNumber, timeOfDay, Message , DoesRepeat} = result; 
+chrome.storage.local.get(["phoneNumber", "FullName", "FaceCB", "InsCB", "TikCB", "TwittCB", "WhatsCB"], (result) =>{
+    const { phoneNumber, FullName, FaceCB, InsCB, TikCB, TwittCB, WhatsCB} = result; 
     if(phoneNumber){
         phoneNumberElement.value = phoneNumber
     }
 
-    if(timeOfDay){
-        TimeOfDayElement.value = timeOfDay
+    if (FullName){
+        FullNameElement.value = FullName
     }
-    if(Message){
-        Messagelement.value = Message
+    if (FaceCB) {
+        facebookCheckBox.value = FaceCB
     }
-
-    repeatCheckBox.checked = DoesRepeat
+    if (InsCB) {
+        instagramCheckBox.value = InsCB
+    }
+    if (TikCB) {
+        tiktokCheckBox.value = TikCB
+    }
+    if (TwittCB) {
+        twitterCheckBox.value = TwittCB
+    }
+    if (WhatsCB) {
+        whatsappCheckBox.value = WhatsCB
+    }
 })
 
 
@@ -48,7 +60,16 @@ chrome.storage.local.get(["phoneNumber","timeOfDay", "Message", "DoesRepeat"], (
 
 
 function validatePhoneNumber(input_str) {
-    var israeliPhoneNumberRegex = /^(\+972|0)[-\s]?[1-9]\d{1,2}[-\s]?\d{3}[-\s]?\d{4}$/;
-  
-    return israeliPhoneNumberRegex.test(input_str);
+    const numericPhoneNumber = input_str.replace(/\D/g, '');
+
+    // Define regular expression patterns for valid phone number formats
+    const patterns = [
+        /^\+972\d{9}$/,      // +972 52-205-8139
+        /^[5-9]\d{8}$/,       // 522058139
+        /^[5-9]\d{2}-\d{3}-\d{3}$/, // 52-205-8139
+        /^0[5-9]\d{8}$/       // 0522058139 or 052-205-8139
+    ];
+
+    // Check if the numericPhoneNumber matches any of the patterns
+    return patterns.some(pattern => pattern.test(numericPhoneNumber));
   } 
