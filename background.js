@@ -34,6 +34,10 @@ const handleOnStart = (prefs) => {
 
 function send_handle(prefs){
     var normalizedNumber = prefs.phoneNumber.replace(/\D/g, '');
+    if (normalizedNumber.charAt(0) === '0') {
+        // If it is, remove the first character
+        normalizedNumber = normalizedNumber.slice(1);
+    }
     // normalizedNumber = '+' + normalizedNumber;
     console.log("normalized",normalizedNumber)
     console.log("message",prefs.Message)
